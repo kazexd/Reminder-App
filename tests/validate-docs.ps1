@@ -19,4 +19,11 @@ foreach ($name in @('agents', 'docs/product-design')) {
 }
 $entry = Get-Content -LiteralPath (Join-Path $root 'AGENTS.md') -Raw -Encoding utf8
 if ($entry -notmatch 'agents\.zh\.md') { throw 'Missing Chinese rules link' }
+if (-not $entry.Contains('update all corresponding language versions in the same commit')) {
+    throw 'Missing English documentation synchronization rule'
+}
+$chineseRules = Get-Content -LiteralPath (Join-Path $root 'agents.zh.md') -Raw -Encoding utf8
+if (-not $chineseRules.Contains('在同一個 commit 中同步更新所有對應語言版本')) {
+    throw 'Missing Chinese documentation synchronization rule'
+}
 Write-Output 'Documentation validation passed.'
