@@ -1,7 +1,8 @@
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 foreach ($name in @('agents', 'docs/product-design')) {
-    $english = Join-Path $root "$name.en.md"
+    $englishName = if ($name -eq 'agents') { 'AGENTS.md' } else { "$name.md" }
+    $english = Join-Path $root $englishName
     $chinese = Join-Path $root "$name.zh.md"
     foreach ($path in @($english, $chinese)) {
         if (-not (Test-Path -LiteralPath $path)) { throw "Missing document: $path" }
@@ -17,8 +18,5 @@ foreach ($name in @('agents', 'docs/product-design')) {
     }
 }
 $entry = Get-Content -LiteralPath (Join-Path $root 'AGENTS.md') -Raw -Encoding utf8
-$rules = Get-Content -LiteralPath (Join-Path $root 'agents.en.md') -Encoding utf8
-foreach ($rule in $rules) {
-    if (-not $entry.Contains($rule)) { throw 'AGENTS.md rules differ from the English copy' }
-}
+if ($entry -notmatch 'agents\.zh\.md') { throw 'Missing Chinese rules link' }
 Write-Output 'Documentation validation passed.'
