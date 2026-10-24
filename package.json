@@ -1,0 +1,31 @@
+{
+  "name": "reminder-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local Windows reminder app",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run tests/reminder.test.ts",
+    "test:desktop": "npm run build && playwright test",
+    "test:docs": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/validate-docs.ps1"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^45.0.0",
+    "electron-vite": "^6.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

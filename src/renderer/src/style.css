@@ -1,0 +1,8 @@
+:root { font-family: 'Segoe UI', sans-serif; color: #172b3a; background: #f3f6f8; }
+body { margin: 0; }
+main { max-width: 860px; margin: 0 auto; padding: 48px 32px; }
+.eyebrow { font-size: 12px; letter-spacing: 2px; color: #37736d; font-weight: 600; }
+h1 { font-size: 36px; margin: 12px 0 36px; }
+section { background: white; border: 1px solid #dce5ea; border-radius: 16px; padding: 28px; }
+h2 { margin-top: 0; }
+p { line-height: 1.6; }
